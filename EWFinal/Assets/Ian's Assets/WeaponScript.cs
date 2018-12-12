@@ -19,7 +19,7 @@ public class WeaponScript : MonoBehaviour
 
     void Update()
     {           // In future I will also be checking here what weapon is active to change the type of attack if necessary
-        if (Input.GetKeyDown("2"))
+        if (Input.GetKey("2"))
         {
 
             float time = Mathf.PingPong(Time.time * 1f, 1);
@@ -42,7 +42,7 @@ public class WeaponScript : MonoBehaviour
         {
             IsAttacking = true;
             //Do damage
-           other.GetComponent<PLayer>().PlayerHealth--;
+           other.GetComponent<PLayer>().CurrentPlayerHealth--;
             
         }
     }

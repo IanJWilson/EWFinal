@@ -1,19 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PLayer : MonoBehaviour {
 
-    public float PlayerHealth;
+    public float StartingPlayerHealth;
+    public float CurrentPlayerHealth;
+
+    public Slider Health;
 
 	// Use this for initialization
 	void Start () {
-        PlayerHealth = 10;
+        CurrentPlayerHealth = StartingPlayerHealth;
 		
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+        Health.value = CurrentPlayerHealth;
 		
 	}
 }
