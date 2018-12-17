@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class WeaponScript : MonoBehaviour
 {
+    public float waitTime;
+
+    public GameObject Shuriken;
+
+
     public bool IsAttacking;
     public bool HitShield;
     public bool testbool = true;
@@ -24,6 +29,19 @@ public class WeaponScript : MonoBehaviour
 
             float time = Mathf.PingPong(Time.time * 1f, 1);
             transform.localPosition = Vector3.Lerp(pointA, pointB, time);
+        }
+
+        if (Input.GetKey("1"))
+        {
+            if(waitTime <= 0)
+            {
+                Instantiate(Shuriken, transform.position, Quaternion.identity);
+            }
+
+        }
+        if(waitTime > 0)
+        {
+            waitTime -= Time.deltaTime;
         }
 
   
