@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour {
 
     public static GameManager instance;
 
-    public bool IsDead;
+    public bool IsDead = false;
 
 
 
@@ -17,6 +17,22 @@ public class GameManager : MonoBehaviour {
             instance = new GameManager();
             DontDestroyOnLoad(gameObject);
         }
+    }
+
+    void Update()
+    {
+        if(IsDead == true)
+        {
+            //DeathMenuUI.SetActive(true);
+            //Time.timeScale = 0f;
+            //IsPaused = true;
+        }
+        //else if(EnemiesRemaining <= 0)
+        //{
+        //    VicMenu.SetActive(true);
+        //    Time.timeScale = 0f;
+        //    IsPaused = true;
+        //}
     }
 
 

@@ -31,7 +31,7 @@ public class WeaponScript : MonoBehaviour
             transform.localPosition = Vector3.Lerp(pointA, pointB, time);
         }
 
-        if (Input.GetKey("1"))
+        if (Input.GetKeyDown("1"))
         {
             if(waitTime <= 0)
             {
@@ -65,23 +65,6 @@ public class WeaponScript : MonoBehaviour
         }
     }
 
-
-
-
-
-    //if (Input.GetKeyDown("1"))
-    //{
-    //    transform.position += Vector3.forward * Mathf.PingPong(Time.time * 0.1f, 10f);
-    //}
-
-    //if (testbool == true)
-    //{
-    //    Vector3 WeaponSize = GetComponent<MeshRenderer>().bounds.size;
-    //    Debug.Log(WeaponSize.z);
-    //    transform.position = Vector3.Lerp(gameObject.transform.position, gameObject.transform.position + gameObject.transform.position, 1.5f);
-    //    testbool = false;
-
-    //}
 
 
 
