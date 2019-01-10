@@ -24,14 +24,15 @@ public class AIScript : WheelController
     public float floorMaxZ;
     public float ranTest = 0f;
 
-
+    public bool inRange = false;
 
 
     public GameObject testCube;
-
+    public GameObject player;
 
     void Start()
     {
+        player = GameObject.Find("Player");
         body = GetComponent<Rigidbody>();
         GetFloorBounds();
         SetTargets();
@@ -43,7 +44,13 @@ public class AIScript : WheelController
     void FixedUpdate()
     {
         //calculate turn angle
-        RelativeTargetPosition = transform.InverseTransformPoint(new Vector3(targetPoint.x, 1f, targetPoint.z));
+        if (inRange == false)
+        {
+            RelativeTargetPosition = transform.InverseTransformPoint(new Vector3(targetPoint.x, 1f, targetPoint.z));
+        } else if (inRange == true)
+        {
+            RelativeTargetPosition = transform.InverseTransformPoint(new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z));
+        }
         inputSteer = RelativeTargetPosition.x / RelativeTargetPosition.magnitude;
         testCube.transform.position = RelativeTargetPosition;
         ranTest = RelativeTargetPosition.magnitude;
@@ -103,6 +110,21 @@ public class AIScript : WheelController
             //can't go faster, already at top speed that engine produces.
             wheelBL.motorTorque = 0;
             wheelBR.motorTorque = 0;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            inRange = true;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            inRange = false;
         }
     }
 

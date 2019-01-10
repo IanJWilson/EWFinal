@@ -36,9 +36,9 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1877091379220926}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.6, y: 0, z: 0.5}
-  m_LocalScale: {x: 0.06916445, y: 0.06916445, z: 0.06916445}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.08, y: -0.015, z: 0.065}
+  m_LocalScale: {x: 0.05, y: 0.05, z: 0.04}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -96,9 +96,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9c88ec3692b05b45ab2f50db8d0c71f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waitTime: 0
+  Shuriken: {fileID: 1200641972273774, guid: 498f521128de76a4498938eb47441db3, type: 2}
   IsAttacking: 0
   HitShield: 0
   testbool: 1
+  pointA: {x: 0, y: 0, z: 0}
+  spearSpawn: {fileID: 0}
 --- !u!136 &136845817551935654
 CapsuleCollider:
   m_ObjectHideFlags: 1

@@ -8,43 +8,45 @@ public class WeaponScript : MonoBehaviour
 
     public GameObject Shuriken;
 
-
-    public bool IsAttacking;
+    public bool spearEQ = false;
+    public bool swordEQ = false;
+    public bool shurikenEQ = false;
     public bool HitShield;
     public bool testbool = true;
-    Vector3 pointA;
-    Vector3 pointB;
-
+    public Vector3 pointA;
+    private Vector3 pointB;
+    public GameObject spearSpawn;
+    public GameObject Spearset;
+    public GameObject spearGO;
+    public GameObject shieldGO;
+    public GameObject Swordset;
+    public GameObject Shurikenset;
+    public GameObject Shuriken1;
+    public GameObject Shuriken2;
+    public bool isAttacking;
+    public float lerpReverse;
+    public int shurikenWait;
+    public float count = 0f;
+    public float countBy = .08f;
+    public int countDown = 0;
 
     void Start()
     {
-        pointA = new Vector3(0.6f, 0, 0.5f);
-        pointB = new Vector3(0.6f, 0, 1.5f);
+        lerpReverse = 0;
+        spearEQ = false;
+        swordEQ = false;
+        shurikenEQ = true;
+        Spearset.SetActive(false);
+        Swordset.SetActive(false);
+        Shurikenset.SetActive(true);
     }
 
     void Update()
-    {           // In future I will also be checking here what weapon is active to change the type of attack if necessary
-        if (Input.GetKey("2"))
-        {
+    {
+        pointA = spearSpawn.transform.localPosition;
+        pointB = new Vector3(pointA.x, pointA.y, pointA.z + 1f);
 
-            float time = Mathf.PingPong(Time.time * 1f, 1);
-            transform.localPosition = Vector3.Lerp(pointA, pointB, time);
-        }
-
-        if (Input.GetKeyDown("1"))
-        {
-            if(waitTime <= 0)
-            {
-                Instantiate(Shuriken, transform.position, Quaternion.identity);
-            }
-
-        }
-        if(waitTime > 0)
-        {
-            waitTime -= Time.deltaTime;
-        }
-
-  
+        if (isAttacking == true) { Attack(); }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -58,29 +60,111 @@ public class WeaponScript : MonoBehaviour
         //}
         if (other.CompareTag("Player"))
         {
-            IsAttacking = true;
+            isAttacking = true;
             //Do damage
            other.GetComponent<PLayer>().CurrentPlayerHealth--;
             
         }
     }
-
-
-
-
-
-
-    /*public void Thrust(GameObject weapon)
-    {
-
-    }
-    public void Bounce(Rigidbody Target)
-    {
-        Target.velocity = (Target.transform.forward * -3f);
     
-    }*/
+    public void PlayerWeaponChoice(int wepChoice)
+    {
+        if (wepChoice == 1)
+        {
+            spearEQ = true;
+            swordEQ = false;
+            shurikenEQ = false;
+            Spearset.SetActive(true);
+            Swordset.SetActive(false);
+            Shurikenset.SetActive(false);
+        } else if ( wepChoice == 2)
+        {
+            spearEQ = false;
+            swordEQ = true;
+            shurikenEQ = false;
+            Spearset.SetActive(false);
+            Swordset.SetActive(true);
+            Shurikenset.SetActive(false);
+        } else if (wepChoice == 3) {
+            spearEQ = false;
+            swordEQ = false;
+            shurikenEQ = true;
+            Spearset.SetActive(false);
+            Swordset.SetActive(false);
+            Shurikenset.SetActive(true);
+        }
+    }
 
+    public void Attack()
+    {
+        if (spearEQ == true)
+        {
+            SpearAttack();
+        }
+        if (swordEQ == true)
+        {
+            SwordAttack();
+        }
+        if (shurikenEQ == true)
+        {
+            ThrowShuriken();
+        }
+    }
 
+    public void SpearAttack()
+    {
+            if (countDown <= 13 && countDown >= 0)
+            {
+                countBy = 0.08f;
+                countDown++;
+                count = count + countBy;
+            }
+            else if (countDown >= 14 && countDown <= 29)
+            {
+                countBy = -0.08f;
+                countDown++;
+                count = count + countBy;
+            }
+            else if (countDown >= 30)
+            {
+                countBy = 0.08f;
+                countDown = 0;
+                count = 0;
+                isAttacking = false;
+            }
+            spearGO.transform.localPosition = Vector3.Lerp(pointA, pointB, count);
+    }
 
+    public void ShieldBounce(Rigidbody Target)
+    {
+        Target.velocity = Target.transform.forward * -3f;
+    }
 
+    public void SwordAttack()
+    {
+        transform.Rotate(0, 20, 0);
+        count++;
+        if (count >= 36)
+        {
+            isAttacking = false;
+            count = 0;
+        }
+    }
+
+    public void ThrowShuriken()
+    {
+        if (Shuriken1.activeInHierarchy==false)
+        {
+            Shuriken1.SetActive(true);
+        } else if (Shuriken2.activeInHierarchy==false)
+        {
+            Shuriken2.SetActive(true);
+        }
+        isAttacking = false;
+    }
+
+    public void SwapWeapon(int weaponNum)
+    {
+        PlayerWeaponChoice(weaponNum);
+    }
 }
