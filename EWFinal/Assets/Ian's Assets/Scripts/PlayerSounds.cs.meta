@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 77a9cd2a89e0d6f46bac24fc547a6f9f
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - SwordSwing: {fileID: 8300000, guid: d54220c436f2ed441845674245ef2df6, type: 3}
+  - SpearThrust: {fileID: 8300000, guid: 681b0c1e346a9584c9dc51b1ebe12a5a, type: 3}
+  - ShuriThrow: {fileID: 8300000, guid: e7f9386d1f29f1b4094d0b1b1bd23032, type: 3}
+  - PowerUp: {fileID: 8300000, guid: b44ce0c2cce4f0649bb438c7c6e736cd, type: 3}
+  - Heal: {fileID: 8300000, guid: 46147f396d7b57a4ea54c99256b8e16f, type: 3}
+  - Die: {fileID: 8300000, guid: 2933198a3680ac742aa789eaea285c45, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

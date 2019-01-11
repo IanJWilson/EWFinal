@@ -20,7 +20,9 @@ public class PlayerSounds : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+        //on sword swing
         SoundManager.instance.PlaySingle(SwordSwing);
+        //etc
         SoundManager.instance.PlaySingle(SpearThrust);
         SoundManager.instance.PlaySingle(ShuriThrow);
         SoundManager.instance.PlaySingle(PowerUp);
@@ -28,10 +30,12 @@ public class PlayerSounds : MonoBehaviour {
         SoundManager.instance.PlaySingle(Die);
     }
 
-        //      if(dead){
+    //      if(dead){
 
-        //        SoundManager.instance.musicsource.Stop();
-        //              }
 
-    
+    //        SoundManager.instance.PlaySingle(Die);
+    //        SoundManager.instance.musicsource.Stop();
+    //              }
+
+
 }
